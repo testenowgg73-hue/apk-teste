@@ -1,0 +1,42 @@
+ULTRON MONITOR - ANDROID 4.2.2 (API 17)
+
+O que vem neste pacote:
+- Projeto Android nativo (Java), minSdk 17, sem AndroidX.
+- pc_bridge.py: auxiliar Windows que envia as leituras para o tablet por ADB.
+
+IMPORTANTE
+Este pacote contém o PROJETO-FONTE do APK, não um APK já compilado. Para gerar o APK, use Android Studio em um PC com Android SDK instalado.
+
+GERAR O APK PELO GITHUB (SEM ANDROID STUDIO)
+1. Crie um repositório no GitHub e envie todo o conteúdo desta pasta para ele.
+2. No repositório, abra a aba Actions.
+3. Se aparecer, clique em “I understand my workflows, go ahead and enable them”.
+4. Selecione “Build ULTRON Monitor APK” e clique em “Run workflow”.
+5. Aguarde o workflow ficar verde (sucesso).
+6. Abra a execução concluída e baixe o artefato “ULTRON-Monitor-APK”.
+7. Extraia o ZIP do artefato; dentro estará app-debug.apk.
+
+A compilação também roda automaticamente quando você envia alterações para main/master.
+
+ALTERNATIVA: GERAR NO ANDROID STUDIO
+Abra a pasta do projeto, aguarde a sincronização e use Build > Build Bundle(s) / APK(s) > Build APK(s).
+O APK ficará em app/build/outputs/apk/debug/app-debug.apk.
+
+CONFIGURAR O TABLET
+1. Ative Opções do desenvolvedor e Depuração USB.
+2. Conecte o tablet ao PC com um cabo USB de dados.
+3. Aceite a autorização de depuração USB no tablet.
+4. Instale o APK gerado.
+
+CONFIGURAR O WINDOWS
+1. Instale Python 3 e Android Platform Tools (adb.exe).
+2. Abra o Prompt na pasta do pacote e execute: py -m pip install psutil
+3. Opcional para temperaturas/uso da GPU/ventoinhas: instale e execute LibreHardwareMonitor como administrador e habilite suporte WMI, se disponível na versão usada.
+4. Execute: py pc_bridge.py
+5. Abra o app no tablet. Mantenha o script aberto enquanto monitora.
+
+LIMITACOES
+- CPU/RAM/rede/disco usam métricas do Windows via psutil.
+- Temperaturas, GPU e RPM dependem dos sensores expostos pelo LibreHardwareMonitor e do suporte do hardware/driver.
+- Se um sensor não existir ou não for exposto, o app mostra N/D ou Não disponíveis; não inventa valores.
+- O envio é feito por comandos ADB USB (broadcast), não por leitura direta do APK.
