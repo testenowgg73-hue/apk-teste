@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application android:theme="@android:style/Theme.Holo.NoActionBar" android:label="ULTRON Monitor" android:allowBackup="false">
+        <activity android:name=".MainActivity" android:screenOrientation="landscape" android:configChanges="orientation|screenSize" android:exported="true">
+            <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
+        </activity>
+        <receiver android:name=".StatsReceiver" android:exported="true">
+            <intent-filter><action android:name="com.ultron.monitor.UPDATE"/></intent-filter>
+        </receiver>
+    </application>
+</manifest>
